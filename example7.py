@@ -16,9 +16,6 @@ def exe():
 
     :return: None
     """
-    # Generator の生成（Kerasで定義すること）
-    generator = _create_keras_generator()
-
     # cifar10のデータのロード
     (x_train, y_train), (_, _) = cifar10.load_data()
     # 犬画像の抽出
@@ -28,6 +25,10 @@ def exe():
 
     with tf.Session(config=tf.ConfigProto(gpu_options=tf.GPUOptions(allow_growth=True))) as sess:
         K.set_session(sess)
+
+        # Generator の生成（Kerasで定義すること）
+        generator = _create_keras_generator()
+
         # 学習
         train.fit(generator, dataset, custom_discriminator=custom_discriminator())
         # Generator の保存

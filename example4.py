@@ -25,9 +25,6 @@ def exe():
     :return: None
     """
 
-    # Generator の生成（Kerasで定義すること）
-    generator = _create_keras_generator()
-
     # cifar10のデータのロード
     (x_train, y_train), (_, _) = cifar10.load_data()
     # 犬画像の抽出
@@ -41,6 +38,10 @@ def exe():
 
     with tf.Session(config=tf.ConfigProto(gpu_options=tf.GPUOptions(allow_growth=True))) as sess:
         K.set_session(sess)
+
+        # Generator の生成（Kerasで定義すること）
+        generator = _create_keras_generator()
+
         # 学習
         # （注）システムは内部で "working_dir" 以下に専用のディレクトリを生成し、そこに一時ファイルを生成する
         # fit()が正常に終了する場合、このディレクトリは削除される
