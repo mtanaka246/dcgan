@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # train.py
 
-from dcgan.BaseObserver import BaseObserver
+from BaseObserver import BaseObserver
 import time
 import numpy as np
 import os
